@@ -1,0 +1,102 @@
+<form action="checkotp.php" method="post">
+          <div style="text-align: center; color: #8e1d3d; font-size: 30px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Register!</div>
+          <br>
+            <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                  <label for="name" class="col-form-label">Name</label>
+                </div>
+                <div class="col-auto">
+                  <input type="text" id="name" class="form-control" aria-describedby="passwordHelpInline" name="username">
+                </div>
+            </div>
+            <br>
+            <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                  <label for="email" class="col-form-label">Email</label>
+                </div>
+                <div class="col-auto">
+                  <input type="email" id="email" class="form-control" aria-describedby="passwordHelpInline" name="emailid">
+                </div>
+            </div>
+            <br>
+          <button class="btn btn-danger" type="submit">Register</button>
+        </form>
+
+
+
+<?php 
+ session_start(); 
+ $name=$_POST['username'];
+ $email=$_POST['emailid'];
+ echo "$name";
+ echo "$email";
+ $_SESSION['email']=$email;  
+ $success = ""; 
+ $error_message = ""; 
+ $conn = new mysqli("localhost", "root", "", "blooddonation"); 
+ $count = 1; 
+ // generate OTP 
+ $otp = rand(100000, 999999); 
+ // Send OTP 
+ require_once("mail_function.php"); 
+  
+ $mail_status = sendOTP($_SESSION['email'], $otp); 
+  
+ if ($mail_status == 1) { 
+         $result = mysqli_query($conn, "INSERT INTO otp_expiry(otp,is_expired,create_at) VALUES ('" . $otp . "', 0, '" . date("Y-m-d H:i:s") . "')"); 
+         $current_id = mysqli_insert_id($conn); 
+         if (!empty($current_id)) { 
+                 $success = 1; 
+         } 
+ } 
+ if (!empty($_POST["submit_otp"])) { 
+         $result = mysqli_query($conn, "SELECT * FROM otp_expiry WHERE otp='" . $_POST["otp"] . "' AND is_expired!=1 AND NOW() <= DATE_ADD(create_at, INTERVAL 24 HOUR)"); 
+         $count = mysqli_num_rows($result); 
+         if (!empty($count)) { 
+                 $result = mysqli_query($conn, "UPDATE otp_expiry SET is_expired = 1 WHERE otp = '" . $_POST["otp"] . "'"); 
+                 $success = 2; 
+         } else { 
+                 $success = 1; 
+                 $error_message = "Invalid OTP!"; 
+         } 
+ }
+ ?> 
+<!DOCTYPE html!>
+<head>
+    <title>OTP Verification</title>
+</head>
+
+<body>
+    <form name="frmUser" method="post">
+        <label for="otp">Enter OTP</label>
+        <br>
+        <input type="text" id="otp" name="otp">
+        <button type="submit" name="submit_otp" value="Submit" class="btnSubmit">Submit</button>
+        <?php
+        if ($success == 2) { 
+        if ($conn->connect_error) {
+          die("Connection failed: " . $conn->connect_error);
+        }
+        echo "Connected successfully";
+      
+        $stmt=$conn->prepare("insert into registrations(username,email)values(?,?)");
+        $stmt->bind_param("ss",$name,$email);
+        $stmt->execute();
+        echo "User registered!";
+        $stmt->close();
+        $conn->close();
+        header("Location:welcome.html");
+        } 
+        else{
+                echo "OTP registration failed";
+        }
+        ?>
+    </form>
+</body>
+</html>
+
+
+
+Warning: Undefined array key "username" in C:\xampp\htdocs\blooddon\checkotp.php on line 3
+
+Warning: Undefined array key "emailid" in C:\xampp\htdocs\blooddon\checkotp.php on line 4

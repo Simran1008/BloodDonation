@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ff605d;
+}
+
+#enlist {
+    line-height: 3.5;
+    text-align: center;
+    position: relative;
+    top: 45px;
+    left: 50%;
+    width: 500px;
+    padding-left: 80px;
+    text-align: center;
+    border-left: 1px solid grey;
+}
+
+input {
+    margin-left: 8px;
+    height: 25px;
+    width: 200px;
+}
+
+img {
+    position: fixed;
+    height: 600px;
+    width: 500px;
+    left: 180px;
+}
+
+textarea {
+    margin-left: 8px;
+}
+
+button {
+    height: 30px;
+    width: 70px;
+}
+
+div {
+    position: fixed;
+    height: 90%;
+    width: 80%;
+    top: 40px;
+    bottom: 40px;
+    left: 140px;
+    background-color: white;
+    border-radius: 20px;
+}
+
+button {
+    margin-top: 20px;
+    background-color: #92c9ef;
+    border: 1px solid grey;
+    border-radius: 20px;
+    width: 100px;
+    height: 35px;
+}
+
+

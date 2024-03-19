@@ -1,0 +1,61 @@
+<!DOCTYPE html!>
+<head>
+    <title>Login Page</title>
+    <link rel="stylesheet" href="login-style.css">
+
+    <script>
+        function validateReqFields(thisform)
+        {
+        var username = thisform.username.value;
+        var email = thisform.email.value;
+        var password = thisform.password.value;
+        if (username==null || username==""){
+          alert("Enter username");
+          thisform.username.focus();
+          return false;
+        }
+        if (email==null || email==""){
+          alert("Enter email id");
+          thisform.email.focus();
+          return false;
+        }
+        if (password==null || password==""){
+          alert("Enter password");
+          thisform.password.focus();
+          return false;
+        }
+        return true;
+        
+        }
+    </script>
+
+</head>
+
+<body>
+    <section id="icon2">
+        <img src="login-icon2.jpg">
+    </section>
+    <div class="center">
+        <img id="icon" src="login-icon.png">
+        <h1>Login</h1>
+        <form action="conn3.php" method="post" onsubmit="return validateReqFields(this)">
+            <div class="txt-field">
+                <input type="text" id="username" name="username">
+                <label for="username">Username</label><br>
+            </div>
+            <div class="txt-field">
+                <input type="email" id="email" name="email">
+                <label for="email">Email</label><br>
+            </div>
+            <div class="txt-field">
+                <input type="password" id="password" name="password">
+                <label for="password">Password</label><br><br>
+            </div>
+        
+            <button id="btn1" type="submit">Login</button>
+            <br>
+            <a href="fpass.html">Forgot password?</a>
+        </form>
+    </div>
+</body>
+</html>

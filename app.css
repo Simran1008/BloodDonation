@@ -1,0 +1,196 @@
+*{
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    background-color: #701616;
+    background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+}
+
+.main{
+    width: 100%;
+    height: 100vh;
+    /* display: flex;
+    flex-direction: row; */
+    padding: 96px 64px;
+    position: relative;
+}
+
+.content {
+    position: relative;
+    width: 100%;
+    z-index: 1; /* Place content above the video */
+    text-align: center;
+/* Text color for content */
+    /* padding: 20px; */
+    display: flex;
+    flex-direction: row;
+}
+
+
+.gif{
+    width: 100%;
+    height: 100%;
+    /* border: solid 1px black; */
+    object-fit: cover;
+}
+
+.gif-bg{
+    width: 400px;
+    height: 200px;
+}
+
+.left-section{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.vdeo{
+    position: absolute;
+    top: 90px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1
+}
+
+.right-section{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+#register {
+    height: 400px;
+    width: 440px;
+    background-color: #d1c8a3;
+    background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+    /* position: fixed; */
+    /* top: 250px;
+    left: 900px; */ 
+    padding: 35px 40px 10px;
+    /* padding-left: 10px; */
+    border-radius: 8px;
+    /* padding-top: 20px; */
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+#register form{
+    display: grid;
+    gap: 16px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    box-shadow: 0 0 10px rgba(112, 22, 22, 0.5)    ; /* Add a glowing shadow effect */
+    outline: none;
+}
+
+button {
+    text-align: center;
+}
+
+
+
+button:hover{
+    cursor: pointer;
+    background-color: #701616;
+}
+
+#name, #mail, #password {
+    border-radius: 4px;
+    /* background-color: #701616; */
+    /* color: beige; */
+}
+
+label {
+    color: #701616;
+    font-weight: 500;
+}
+
+#login {
+    text-align: center;
+    size: 10px;
+    /* height: 70px;
+    width: 450px; */
+    /* background-color: #d1c8a3;
+background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png"); */
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+    /* position: fixed; */
+    /* top: 580px;
+    left: 900px; */
+    padding-left: 10px;
+    border-radius: 35px;
+    padding-top: 10px;
+    font-family: 'Helvetica';
+}
+
+#choice {
+    color: beige;
+    position: fixed;
+    top: 300px;
+    left: 150px;
+    font-family: 'Helvetica';
+}
+
+a {
+    text-decoration: none;
+    color: beige;
+}
+
+.display-2:hover {
+    font-size: 70px;
+    text-decoration: underline;
+}
+
+.col-form-label {
+    font-size: 20px;
+}
+
+.video-wrapper {
+    /* Telling our absolute positioned video to 
+    be relative to this element */
+    position: relative;
+  
+    width: 400px;
+    height: 200px;
+  
+    /* Will not allow the video to overflow the 
+    container */
+    overflow: hidden;
+  
+    /* Centering the container's content vertically 
+    and horizontally */
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#background-video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+  }
+
+  .w-full{
+    width: 100%;
+  }
+
+  .video-bg{
+    height: 280px;
+    width: 600px;
+    overflow: hidden;
+    border: solid 1px black;
+}
